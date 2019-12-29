@@ -15,7 +15,11 @@ public class Options {
 
     private String transmission;
 
-    public String getHasgps() {
+    @JoinColumn(name = "active_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    private Active active;
+
+    public String getHasGPS() {
         return hasGPS;
     }
 
@@ -29,5 +33,13 @@ public class Options {
 
     public void setTransmission(String transmission) {
         this.transmission = transmission;
+    }
+
+    public Active getActive() {
+        return active;
+    }
+
+    public void setActive(Active active) {
+        this.active = active;
     }
 }

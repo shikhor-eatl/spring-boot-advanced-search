@@ -1,6 +1,7 @@
 package com.example.springbootadvancedsearch.model;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 @Table(name = "cars")
@@ -21,8 +22,12 @@ public class Car {
     private Integer price;
 
     @JoinColumn(name = "options_id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Options options;
+
+    private Boolean isDeleted;
+
+    private Instant createdAt = Instant.now();
 
     public Integer getId() {
         return id;
@@ -78,5 +83,21 @@ public class Car {
 
     public void setOptions(Options options) {
         this.options = options;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 }
